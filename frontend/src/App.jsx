@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { DEMO_USERS } from "./data/demoUsers";
 import UserSelect from "./components/UserSelect";
+import MessageInput from "./components/MessageInput";
 
 function App() {
   const [selectedUserId, setSelectedUserId] = useState(DEMO_USERS[0].id);
@@ -14,6 +15,7 @@ function App() {
             selectedUserId={selectedUserId}
             onChange={setSelectedUserId}
           />
+          <MessageInput/>
         </div>
       </div>
     </>
