@@ -1,0 +1,73 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "cde5f70d-4922-4e2b-bfc3-ddbb9095de32",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4b403f60-462e-4402-a737-7ca834f0fe9e",
+      "name": "Webhook",
+      "webhookId": "cde5f70d-4922-4e2b-bfc3-ddbb9095de32"
+    },
+    {
+      "parameters": {
+        "fromEmail": "info.vanixgamin@gmail.com",
+        "toEmail": "akshatbhj@gmail.com",
+        "subject": "={{$json.body.classification}}",
+        "html": "=Conversation {{$json.body.conversationId}} was escalated.\\nClassification: {{$json.body.classification}}\\nReason: {{$json.body.reason}}\\nMessage: {{$json.body.message}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        224,
+        0
+      ],
+      "id": "d4aa71ca-6a46-4752-8e39-e0d1bd9a11db",
+      "name": "Send an Email",
+      "webhookId": "70e91a11-d527-4a58-be10-57b8e0e7ec3d",
+      "credentials": {
+        "smtp": {
+          "id": "UvCMWkaGuTvW7mDc",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send an Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "42593fd2-1571-4446-b2b2-d403e5e6d2d2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "65754e5333d405d9cc816308e5c67f09e94ef0844edc7356c4b0e88122460a4e"
+  },
+  "nodeGroups": [],
+  "id": "eFaSTvMaVBNQEEuo",
+  "tags": []
+}

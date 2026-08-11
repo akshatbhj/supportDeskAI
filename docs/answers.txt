@@ -1,0 +1,17 @@
+Q1: Tell us about one technical problem you personally got stuck on.
+
+My n8n escalation mails wasn't triggering for actual messages, even though one manual curl test to the webhook worked fine earlier. Checking Supabase Edge Function logs and find "n8n webhook responding 404." Checked n8n execution history and seen my old test calls but nothing from the actual requests. Turned out the workflow was never actually "Activated", only keeping in the editor let the Test URL work, but the Production URL 404s till you press Publish/Activate. Fixed it, redeployed, working after that.
+
+Lesson: testing pieces in isolation give me false confidences, since the "working" test was hitting one different URL then the actual flow using.
+Q2: Walk us through what you actually worked on, start to finish.
+
+I used LLM chatbot (Gemini, Claude) throughout this, for scaffoldings, and for explaining Supabase, n8n, and Deno, none of which I've use before. Rough orders: architecture first (deciding the frontend should never make the escalation decisions itself, only the backend should), then the React frontend, then the Supabase schema and project setups, then one Supabase Edge Function which calling Hugging Face for classifications and handle escalation, then the n8n workflow, then this README/docs.
+
+I make the actual decision on scopes and tradeoff, run every commands myself, and do the debuggings (reading log, network request, error code) rather then only asking for fix blind. AI help a lots with boilerplates and explaining unfamiliar tool quickly, I don't thinks I'll have got through all three new tool in this timeframes without that helps, and I'm rather being upfront about that then pretending otherwise.
+
+Q3: The chatbot is giving wrong answers in production, how would you
+investigate?
+
+Firstly I'll pull actual fail conversation and read it myself to figure out if it's the classifications what's wrong, the replies contents, or both those pointing on different cause. Then I'll check what change recently (prompts, knowledge base contents, model versions, my own last deploys) before assume the model itself is only being unreliables.
+
+I'll also check for consistency issue, I actually hit this while building the projects, when one early keyword-matching stub classify "can't log in" as urgents but "not able to log in" as one general questions, even though it means the same things. If actual answer are inconsistent across similar phrasing, that pointing on the prompt/model rather then infrastructures. Last steps will be reproduce one bad cases in isolations (same prompts + inputs, running directly against the API) so I can iterating on one fix without customer seeing it.
