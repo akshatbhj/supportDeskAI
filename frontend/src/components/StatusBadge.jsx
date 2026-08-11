@@ -24,14 +24,14 @@ export function EscalationBanner({ reason }) {
                      bg-[#fbeae2] border border-[color-mix(in_srgb,var(#c24a24)_25%,transparent)]"
     >
       <i
-        className="ti ti-user-exclamation text-[var(#c24a24)] text-lg mt-0.5"
+        className="ti ti-user-exclamation text-[#c24a24] text-lg mt-0.5"
         aria-hidden="true"
       ></i>
       <div>
-        <p className="text-sm font-medium text-[var(#c24a24)]">
+        <p className="text-sm font-medium text-[#c24a24]">
           Escalated to a human
         </p>
-        <p className="text-xs text-[var(#c24a24)] `opacity-80 mt-0.5">
+        <p className="text-xs text-[#c24a24] `opacity-80 mt-0.5">
           {reason}
         </p>
       </div>
